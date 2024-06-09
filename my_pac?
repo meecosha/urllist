@@ -1,0 +1,17 @@
+function FindProxyForURL(url, host) {
+    // Dictionary of websites to be proxied
+    var proxySites = {
+        "quora.com": true,
+        "canva.com": true
+    };
+
+    // Iterate through the dictionary keys
+    for (var site in proxySites) {
+        if (proxySites.hasOwnProperty(site) && shExpMatch(host, "*." + site)) {
+            return "SOCKS5 127.0.0.1:1080";  // Use your local Shadowsocks proxy address and port
+        }
+    }
+
+    // Default to direct connection for other sites
+    return "DIRECT";
+}
